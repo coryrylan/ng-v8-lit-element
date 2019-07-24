@@ -19,6 +19,24 @@ export class AppComponent {
   textColor = 'blue';
   lightTheme = true;
 
+  toggleStylesheet() {
+    const myId = 'myStylesheet';
+    const styleNode = document.getElementById(myId);
+
+    if (styleNode) {
+      // remove it
+      styleNode.parentNode.removeChild(styleNode);
+    } else {
+      // add it
+      const newStyle = document.createElement('link');
+      document.head.appendChild(newStyle);
+      newStyle.rel = 'stylesheet';
+      newStyle.id = myId;
+      newStyle.href = '/assets/themesheet.css';
+    }
+    // by removing and adding we are hoping the cssVars watch will come into play
+  }
+
   toggleTheme() {
     this.lightTheme = !this.lightTheme;
 
